@@ -1,0 +1,70 @@
+/*--------------  Escondendo o scroll das páginas ---------------------*/
+@-moz-document url-prefix() { /* Disable scrollbar Firefox */
+    html{
+      scrollbar-width: none;
+     
+    }
+}
+::-webkit-scrollbar{
+    display: none;
+}
+.container {
+    width: 375px;
+    margin:0 auto;
+    background: #E5E5E5;	
+}
+header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky; 
+    width: 375px;
+    height: 80px;
+    top: 0;
+    background: #FFFFFF;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.05);
+}
+#logo-uol{
+    width: 75px;
+    height: 53px;
+    margin-left: 22px;
+}
+#pessoa-menu{
+    font-size: 42.19px;
+    margin-right: 22.41px;
+}
+main{
+    height: 100vh;
+}
+footer{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky; 
+    width: 375px;
+    height: 80px;
+    bottom: 0; 
+    background: #FFFFFF;
+    box-shadow: 0px -4px 6px rgba(0, 0, 0, 0.05);   
+}
+#entrada{
+    width: 145px;
+    height: 30px;
+    margin-left: 17px;
+    
+
+    font-family: Roboto;
+    font-style: italic;
+    font-weight: normal;
+
+    font-size: 18px;
+    line-height: 21px;
+    
+    display: flex;  
+    font-weight: 400;
+    border: none;
+}
+footer ion-icon{    
+    font-size: 26px;
+    margin-right: 18px;
+}
