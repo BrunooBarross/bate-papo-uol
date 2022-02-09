@@ -35,7 +35,15 @@ header{
     margin-right: 22.41px;
 }
 main{
-    height: 100vh;
+    height: 100%;
+}
+.div-mensagens{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-left: 8px;
+    width: 375px;
+    height: 40px;
 }
 footer{
     display: flex;
