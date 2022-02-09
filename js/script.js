@@ -8,17 +8,27 @@ function getMensagens(){
 function renderizarMensagem(mensagem){    
     msg = mensagem.data; 
     console.log(msg);   
-    let conteudo = document.querySelector(".conteudo");
+    let conteudo = document.querySelector(".conteudo");    
     for(let i = 0; i < msg.length; i++){
-        conteudo.innerHTML += `    
-        <div class="div-mensagens">
-            <time>(${msg[i].time})</time>
-            <strong>${msg[i].from}</strong>
-            <span>para</span>            
-            <strong>${msg[i].to}</strong>
-            ${msg[i].text}
-        </div>        
-        `;
-    }   
+        if(msg[i].text === 'entra na sala...' || msg[i].text === 'sai da sala...'){
+            conteudo.innerHTML += `    
+                <div class="div-mensagens">
+                <div class="time"><time>(${msg[i].time})</time></div>  
+                    <strong>${msg[i].from}</strong>                                
+                    ${msg[i].text}
+                </div>        
+            `;
+            }else{
+                conteudo.innerHTML += `    
+                    <div class="div-entrada-saida">
+                        <div class="time"><time>(${msg[i].time})</time></div>                        
+                        <strong>${msg[i].from}</strong>
+                        <span>para</span>            
+                        <strong>${msg[i].to}</strong>
+                        ${msg[i].text}
+                    </div>        
+                `;
+            }        
+        }   
 }
 
