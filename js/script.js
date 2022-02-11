@@ -37,7 +37,7 @@ function renderizarMensagem(mensagem){
     msg = mensagem.data; 
     console.log(msg);         
     for(let i = 0; i < msg.length; i++){
-        if(msg[i].text === 'entra na sala...' || msg[i].text === 'sai da sala...'){            
+        if(msg[i].type === "status"){            
             conteudo.innerHTML += `    
                 <div class="div-entrada-saida" id=${[i]}>
                     <p><time>(${msg[i].time})</time> 
@@ -45,7 +45,7 @@ function renderizarMensagem(mensagem){
                     ${msg[i].text}</p>                     
                 </div>        
             `;                      
-            }else if(msg[i].to === 'reservadamente'){
+            }else if(msg[i].type === "private_message"){
                 conteudo.innerHTML += `    
                     <div class="div-reservado" id=${[i]}>
                         <p><time>(${msg[i].time})</time> 
@@ -58,7 +58,7 @@ function renderizarMensagem(mensagem){
                     <div class="div-mensagens" id=${[i]}>
                         <p><time>(${msg[i].time})</time>                       
                         <strong>${msg[i].from}</strong>
-                        <span>para</span> sdf                                   
+                        <span>para</span>                                   
                         <strong>${msg[i].to}</strong>
                         ${msg[i].text}</p> 
                     </div>        
@@ -75,7 +75,7 @@ function enviarMensagem(){
         "https://mock-api.driven.com.br/api/v4/uol/messages",
         {
             from: nomeUsuario,
-            to: "todos",
+            to: usuarioEscolhido,
             text: mensagem,
             type: "message" 
         }
@@ -129,7 +129,7 @@ function rendenrizarUsuarios(usuario){
     usuarios = usuario.data;       
     for(let i = 0; i < msg.length; i++){          
         conteudo.innerHTML += `    
-        <div class="todos">
+        <div class="todos" onclick="selecionarUsuario(this, '${usuarios[i].name}')">
             <ion-icon name="people"></ion-icon>
             <p>${usuarios[i].name}</p>
         </div>   
@@ -138,4 +138,16 @@ function rendenrizarUsuarios(usuario){
 }
 function teste(erro){
     console.log('Erro ao buscar usuarios');
+}
+let usuarioEscolhido = "todos";
+function selecionarUsuario(div, usuario){
+    usuarioEscolhido = usuario;
+}
+function abrirMenu(){
+    document.querySelector(".menu-modal").style.display="block"
+    document.querySelector(".sombra").style.display="block"
+}
+function fecharMenu(){
+    document.querySelector(".menu-modal").style.display="none"
+    document.querySelector(".sombra").style.display="none"
 }

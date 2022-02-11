@@ -119,7 +119,8 @@ footer ion-icon{
     background: rgba(0, 0, 0, 0.6);
     width: 100%;
     height: 100%;
-    z-index: 2;   
+    z-index: 2;  
+    display: none; 
 }
 .menu-modal{ 
     position: fixed;   
@@ -128,6 +129,7 @@ footer ion-icon{
     height: 100%;
     margin-left:116px ;
     background: #FFFFFF;
+    display: none;
 }
 .titulo{
     width: 259px;
