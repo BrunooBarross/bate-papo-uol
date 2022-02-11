@@ -4,7 +4,7 @@ solicitarUsuario();
 function solicitarUsuario(){
     nomeUsuario = prompt('Qual é o seu nome de usuário');
     const promise = axios.post(
-        "https://mock-api.driven.com.br/api/v4/uol/participants ",
+        "https://mock-api.driven.com.br/api/v4/uol/participants",
         {
           name: nomeUsuario
         }
@@ -25,7 +25,7 @@ function quandoSucesso(alerta){
 }
 
 let msg = [];
-setInterval(getMensagens, 10000);
+setInterval(getMensagens, 3000);
 function getMensagens(){
     const resposta = axios.get("https://mock-api.driven.com.br/api/v4/uol/messages");
     resposta.then(renderizarMensagem); 
@@ -45,6 +45,14 @@ function renderizarMensagem(mensagem){
                     ${msg[i].text}</p>                     
                 </div>        
             `;                      
+            }else if(msg[i].to === 'reservadamente'){
+                conteudo.innerHTML += `    
+                    <div class="div-reservado" id=${[i]}>
+                        <p><time>(${msg[i].time})</time> 
+                        <strong>${msg[i].from}</strong>                                
+                        ${msg[i].text}</p>                     
+                    </div>        
+                `;    
             }else{
                 conteudo.innerHTML += `    
                     <div class="div-mensagens" id=${[i]}>
@@ -73,16 +81,20 @@ function enviarMensagem(){
         }
         );
         promise.then(quandoSucessoMensagem);
-        promise.catch(quandoErroMensagem);
+        promise.catch(quandoErroMensagem);        
+}
 
-        const promiseUser = axios.post(
-            "https://mock-api.driven.com.br/api/v4/uol/status",
-                {
-                 name: nomeUsuario
-                }
-            );
-        promiseUser.then(sucessoStatusUsuario);
-        promiseUser.catch(falhaStatusUsuario);  
+
+setInterval(statusUsuario, 5000);
+function statusUsuario(){
+    const promiseUser = axios.post(
+        "https://mock-api.driven.com.br/api/v4/uol/status",
+            {
+             name: nomeUsuario
+            }
+        );
+    promiseUser.then(sucessoStatusUsuario);
+    promiseUser.catch(falhaStatusUsuario);  
 }
 function quandoErroMensagem(){
     console.log('Erro na mensagem');
@@ -97,4 +109,33 @@ function sucessoStatusUsuario(){
 }
 function falhaStatusUsuario(){
     console.log('Erro no status');
+}
+
+setTimeout(()=>{ 
+    getUsuarios();       
+     },2000); 
+
+setInterval(getUsuarios, 40000);
+function getUsuarios(){        
+    const resposta = axios.get("https://mock-api.driven.com.br/api/v4/uol/participants");
+    resposta.then(rendenrizarUsuarios);
+    resposta.catch(teste); 
+} 
+let usuarios = [];
+function rendenrizarUsuarios(usuario){ 
+    usuarios.splice(0, usuarios.length);  
+    console.log("Usuários carregados"); 
+    let conteudo = document.querySelector(".menu-modal");          
+    usuarios = usuario.data;       
+    for(let i = 0; i < msg.length; i++){          
+        conteudo.innerHTML += `    
+        <div class="todos">
+            <ion-icon name="people"></ion-icon>
+            <p>${usuarios[i].name}</p>
+        </div>   
+    `;       
+    }                                          
+}
+function teste(erro){
+    console.log('Erro ao buscar usuarios');
 }
