@@ -32,10 +32,8 @@ function getMensagens(){
 }
 let ultimaDiv;   
 function renderizarMensagem(mensagem){  
-    let conteudo = document.querySelector(".conteudo");
-          
-    msg = mensagem.data; 
-    console.log(msg);         
+    let conteudo = document.querySelector(".conteudo");          
+    msg = mensagem.data;          
     for(let i = 0; i < msg.length; i++){
         if(msg[i].type === "status"){            
             conteudo.innerHTML += `    
@@ -111,20 +109,15 @@ function falhaStatusUsuario(){
     console.log('Erro no status');
 }
 
-setTimeout(()=>{ 
-    getUsuarios();       
-     },2000); 
+setInterval(getUsuarios, 10000);
 
-setInterval(getUsuarios, 40000);
 function getUsuarios(){        
     const resposta = axios.get("https://mock-api.driven.com.br/api/v4/uol/participants");
-    resposta.then(rendenrizarUsuarios);
-    resposta.catch(teste); 
+    resposta.then(rendenrizarUsuarios);    
 } 
 let usuarios = [];
-function rendenrizarUsuarios(usuario){ 
-    usuarios.splice(0, usuarios.length);  
-    console.log("Usuários carregados"); 
+function rendenrizarUsuarios(usuario){     
+    usuarios.splice(0, usuarios.length);     
     let conteudo = document.querySelector(".menu-modal");          
     usuarios = usuario.data;       
     for(let i = 0; i < msg.length; i++){          
@@ -135,9 +128,6 @@ function rendenrizarUsuarios(usuario){
         </div>   
     `;       
     }                                          
-}
-function teste(erro){
-    console.log('Erro ao buscar usuarios');
 }
 let usuarioEscolhido = "todos";
 function selecionarUsuario(div, usuario){
