@@ -91,8 +91,7 @@ function statusUsuario(){
              name: nomeUsuario
             }
         );
-    promiseUser.then(sucessoStatusUsuario);
-    promiseUser.catch(falhaStatusUsuario);  
+   ;  
 }
 function quandoErroMensagem(){
     console.log('Erro na mensagem');
@@ -102,32 +101,39 @@ function quandoSucessoMensagem(){
     mensagem = document.querySelector(".entrada").value='';
     getMensagens();
 }
-function sucessoStatusUsuario(){
-    console.log('Sucesso no status');
-}
-function falhaStatusUsuario(){
-    console.log('Erro no status');
-}
 
-setInterval(getUsuarios, 10000);
+setInterval(getUsuarios, 30000);
 
 function getUsuarios(){        
     const resposta = axios.get("https://mock-api.driven.com.br/api/v4/uol/participants");
     resposta.then(rendenrizarUsuarios);    
 } 
 let usuarios = [];
-function rendenrizarUsuarios(usuario){     
+function rendenrizarUsuarios(usuario){  
+    limpaUsuarios();
     usuarios.splice(0, usuarios.length);     
-    let conteudo = document.querySelector(".menu-modal");          
-    usuarios = usuario.data;       
-    for(let i = 0; i < msg.length; i++){          
-        conteudo.innerHTML += `    
-        <div class="todos" onclick="selecionarUsuario(this, '${usuarios[i].name}')">
+    let conteudo = document.querySelector(".escolher-usuario");          
+    usuarios = usuario.data;
+    conteudo.innerHTML += `
+        <div class="todos" onclick="selecionarUsuario(this, 'todos')">
             <ion-icon name="people"></ion-icon>
-            <p>${usuarios[i].name}</p>
-        </div>   
-    `;       
+            <p>Todos</p>
+        </div>         
+    `;              
+    for(let i = 0; i < msg.length; i++){          
+        conteudo.innerHTML += `           
+            <div class="todos" onclick="selecionarUsuario(this, '${usuarios[i].name}')">
+                <ion-icon name="people"></ion-icon>
+                <p>${usuarios[i].name}</p>
+            </div>   
+        `;       
     }                                          
+}
+function limpaUsuarios(){
+    let divUsuarios = document.querySelector(".escolher-usuario");
+    while(divUsuarios.firstChild){
+        divUsuarios.removeChild(divUsuarios.firstChild);
+    }   
 }
 let usuarioEscolhido = "todos";
 function selecionarUsuario(div, usuario){
