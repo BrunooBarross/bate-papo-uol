@@ -1,5 +1,7 @@
 let nomeUsuario;
-//solicitarUsuario();
+let ultimaMensagem = '';
+let comparadorMensagem = false;
+let indexInicial = 0;
 
 function solicitarUsuario(){
     //nomeUsuario = prompt('Qual é o seu nome de usuário');
@@ -46,8 +48,17 @@ function getMensagens(){
 function renderizarMensagem(mensagem){  
     let conteudo = document.querySelector(".conteudo");          
     msg = mensagem.data;   
-    limpaMensagens()       
-    for(let i = 0; i < msg.length; i++){
+    //limpaMensagens()
+    
+    if (comparadorMensagem == true){
+        for (let i = msg.length-1; i>=0 ; i--) {            
+           if (ultimaMensagem === msg[i].from + msg[i].text + msg[i].time){
+                indexInicial = i+1;               
+            } 
+        }   
+    }
+
+    for(let i = indexInicial; i < msg.length; i++){
         if(msg[i].type === "status"){            
             conteudo.innerHTML += `    
                 <div class="div-entrada-saida" id=${[i]}>
@@ -78,6 +89,8 @@ function renderizarMensagem(mensagem){
                 `;
         }              
     }
+    ultimaMensagem = msg[99].from + msg[99].text + msg[99].time;
+    comparadorMensagem = true;
     conteudo = conteudo.lastElementChild;    
     conteudo.scrollIntoView()  
 }
