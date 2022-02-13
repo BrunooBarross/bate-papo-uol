@@ -146,10 +146,11 @@ footer ion-icon{
 }
 .todos{
     display: flex;
-    margin-left: 17px;
+    position: relative;
     height: 36px;
     margin-top: 1px;
     align-items: center;
+    background-color: greenyellow;
 }
 .todos p{
     display: flex;   
@@ -161,12 +162,76 @@ footer ion-icon{
     line-height: 19px;
     font-weight: 400;
 }
-.todos ion-icon{
+.icone-pessoa{
+    padding-left: 17px;
     font-size: 23px;
 }
-
+.escolher-usuario{
+    height: 40%;
+    overflow-y: scroll;
+}
+.check{
+    position: absolute;
+    font-size: 20px;
+    color: #28BB25;    
+    right: 10px;
+    display: none;
+}
+.todos.ativa-check .check{
+    display: block;
+}
+.titulo2{
+    width: 259px;
+    height: 66px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.titulo2 p{ 
+    display: flex;
+    align-items: center;
+    text-align: center;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 19px;    
+    color: #000000;
+}
+.publico{
+    display: flex;
+    align-items: center;
+    height: 36px;
+    background-color: red;
+}
+.publico ion-icon{
+    font-size: 21px;
+    padding-left: 17px;
+}
+.publico p{
+    margin-left: 10px;
+}
+.reservado{
+    display: flex;
+    align-items: center;
+    height: 36px;
+    background-color: red;
+}
+.reservado ion-icon{
+    font-size: 21px;
+    padding-left: 17px;
+}
+.reservado p{
+    margin-left: 10px;
+}
+.tipo-msg.ativa-msg .check{
+    display: block;
+}
+.sair-pagina{
+    background-color: greenyellow;
+}
 @media (max-width: 450px) {	  
     .container {
-        width: 100%;       
+        width: 100vw;       
     }
 }

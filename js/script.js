@@ -25,6 +25,8 @@ function quandoSucesso(alerta){
 }
 
 let msg = [];
+let comparaMsg =[];
+let novasMensagens=[];
 setInterval(getMensagens, 3000);
 function getMensagens(){
     const resposta = axios.get("https://mock-api.driven.com.br/api/v4/uol/messages");
@@ -33,7 +35,8 @@ function getMensagens(){
 
 function renderizarMensagem(mensagem){  
     let conteudo = document.querySelector(".conteudo");          
-    msg = mensagem.data;          
+    msg = mensagem.data;   
+    limpaMensagens()       
     for(let i = 0; i < msg.length; i++){
         if(msg[i].type === "status"){            
             conteudo.innerHTML += `    
@@ -46,8 +49,10 @@ function renderizarMensagem(mensagem){
             }else if(msg[i].type === "private_message"){
                 conteudo.innerHTML += `    
                     <div class="div-reservado" id=${[i]}>
-                        <p><time>(${msg[i].time})</time> 
-                        <strong>${msg[i].from}</strong>                                
+                        <p><time>(${msg[i].time})</time>                        
+                        <strong>${msg[i].from}</strong> 
+                        <span>reservadamente para</span>  
+                        <strong>${msg[i].to}</strong>                               
                         ${msg[i].text}</p>                     
                     </div>        
                 `;    
@@ -66,6 +71,18 @@ function renderizarMensagem(mensagem){
     conteudo = conteudo.lastElementChild;    
     conteudo.scrollIntoView()  
 }
+function limpaMensagens(){
+    let divMensagens = document.querySelector(".conteudo");
+    while(divMensagens.firstChild){
+        divMensagens.removeChild(divMensagens.firstChild);
+    }   
+}
+document.addEventListener("keypress", function(e) {
+    if(e.key === 'Enter') {    
+        let btn = document.querySelector(".envia-msg");      
+        btn.click();    
+    }
+  });
 let mensagem;
 function enviarMensagem(){
     mensagem = document.querySelector(".entrada").value;    
@@ -75,7 +92,7 @@ function enviarMensagem(){
             from: nomeUsuario,
             to: usuarioEscolhido,
             text: mensagem,
-            type: "message" 
+            type: tipoDeMensagem 
         }
         );
         promise.then(quandoSucessoMensagem);
@@ -95,6 +112,7 @@ function statusUsuario(){
 }
 function quandoErroMensagem(){
     console.log('Erro na mensagem');
+    window.location.reload()
 }
 function quandoSucessoMensagem(){
     console.log('Mensagem enviada');
@@ -102,29 +120,31 @@ function quandoSucessoMensagem(){
     getMensagens();
 }
 
-setInterval(getUsuarios, 30000);
+setInterval(getUsuarios, 10000);
 
 function getUsuarios(){        
     const resposta = axios.get("https://mock-api.driven.com.br/api/v4/uol/participants");
-    resposta.then(rendenrizarUsuarios);    
+    resposta.then(renderizarUsuarios);    
 } 
 let usuarios = [];
-function rendenrizarUsuarios(usuario){  
+function renderizarUsuarios(usuario){  
     limpaUsuarios();
     usuarios.splice(0, usuarios.length);     
     let conteudo = document.querySelector(".escolher-usuario");          
     usuarios = usuario.data;
     conteudo.innerHTML += `
         <div class="todos" onclick="selecionarUsuario(this, 'todos')">
-            <ion-icon name="people"></ion-icon>
+            <ion-icon class="icone-pessoa" name="people"></ion-icon>
             <p>Todos</p>
+            <ion-icon class="check" name="checkmark-outline"></ion-icon>
         </div>         
     `;              
     for(let i = 0; i < msg.length; i++){          
         conteudo.innerHTML += `           
             <div class="todos" onclick="selecionarUsuario(this, '${usuarios[i].name}')">
-                <ion-icon name="people"></ion-icon>
+                <ion-icon class="icone-pessoa" name="people"></ion-icon>
                 <p>${usuarios[i].name}</p>
+                <ion-icon class="check" name="checkmark-outline"></ion-icon>
             </div>   
         `;       
     }                                          
@@ -135,10 +155,6 @@ function limpaUsuarios(){
         divUsuarios.removeChild(divUsuarios.firstChild);
     }   
 }
-let usuarioEscolhido = "todos";
-function selecionarUsuario(div, usuario){
-    usuarioEscolhido = usuario;
-}
 function abrirMenu(){
     document.querySelector(".menu-modal").style.display="block"
     document.querySelector(".sombra").style.display="block"
@@ -146,4 +162,26 @@ function abrirMenu(){
 function fecharMenu(){
     document.querySelector(".menu-modal").style.display="none"
     document.querySelector(".sombra").style.display="none"
+}
+let usuarioEscolhido = "todos";
+function selecionarUsuario(div, usuario){
+    usuarioEscolhido = usuario;
+    let usuarioSelecionado = document.querySelector(".ativa-check");
+    if(usuarioSelecionado !== null){
+        usuarioSelecionado.classList.remove("ativa-check")
+    }    
+    div.classList.add("ativa-check");    
+}
+
+let tipoDeMensagem = 'message';
+function tipoMensagem(div, tipoMensagem){
+    tipoDeMensagem = tipoMensagem;
+    let tipoSelecionado = document.querySelector(".ativa-msg"); 
+    if(tipoSelecionado !== null){
+        tipoSelecionado.classList.remove("ativa-msg")
+    }    
+    div.classList.add("ativa-msg");    
+}
+function deslogarUsuario(){
+    window.location.reload()
 }

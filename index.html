@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="css/reset.css" rel="stylesheet" />
         <link href="css/style.css" rel="stylesheet" />
         <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -19,11 +19,25 @@
                     <p>Escolha um contato para enviar mensagem:</p>
                 </div>
                 <div class="escolher-usuario">
-                    <div class="todos" onclick="selecionarUsuario(this, 'todos')">
-                        <ion-icon name="people"></ion-icon>
-                        <p>Todos</p>
-                    </div>
-                </div>                
+                    
+                </div> 
+                <div class="titulo2">
+                    <p>Escolha a visibilidade:</p>
+                </div>                   
+                <div class="tipo-msg publico ativa-msg" onclick="tipoMensagem(this, 'message')">
+                    <ion-icon name="lock-open"></ion-icon>
+                    <p>Público</p>
+                    <ion-icon class="check" name="checkmark-outline"></ion-icon>
+                </div> 
+                <div class="tipo-msg reservado" onclick="tipoMensagem(this, 'private_message')">
+                    <ion-icon name="lock-closed"></ion-icon>
+                    <p>Reservadamente</p>
+                    <ion-icon class="check" name="checkmark-outline"></ion-icon>
+                </div>
+                <button onclick="deslogarUsuario()">
+                    <ion-icon name="exit"></ion-icon>
+                    <p>Logout</p>
+                </button>                 
             </div>
             <header>
                 <img id="logo-uol"src="img/logo 1.png" alt="">                
@@ -34,7 +48,7 @@
             </main>
             <footer>
                 <input class="entrada" type="text" placeholder="Escreva aqui...">                
-                <ion-icon onclick="enviarMensagem()"name="paper-plane-outline"></ion-icon>
+                <ion-icon class="envia-msg" onclick="enviarMensagem()"name="paper-plane-outline"></ion-icon>
                 
             </footer>
         </div>
