@@ -1,8 +1,10 @@
 let nomeUsuario;
-solicitarUsuario();
+//solicitarUsuario();
 
 function solicitarUsuario(){
-    nomeUsuario = prompt('Qual é o seu nome de usuário');
+    //nomeUsuario = prompt('Qual é o seu nome de usuário');
+    error.innerHTML = '';
+    nomeUsuario = document.querySelector(".input-usuario").value;
     const promise = axios.post(
         "https://mock-api.driven.com.br/api/v4/uol/participants",
         {
@@ -12,22 +14,30 @@ function solicitarUsuario(){
       promise.then(quandoSucesso);
       promise.catch(quandoErro);    
 }
+let error = document.querySelector(".msg-erro");
 function quandoErro(erro){
     if(erro.response.status === 400){
-        nomeUsuario = prompt('Este usuário já existe, por favor escolha outro nome de usuário');
+        error.innerHTML += `<p>O nome: <span>${nomeUsuario}</span> não esta disponível<p>`;         
+        document.querySelector(".input-usuario").value='';     
     }
 }
 function quandoSucesso(alerta){
+    document.querySelector(".container-modal").style.display = "none";
     if(alerta.status === 200){
         console.log("logado com sucesso")
         getMensagens();
+        getUsuarios();
+        getUsuarios();
+        setInterval(getMensagens, 3000);
+        setInterval(statusUsuario, 5000);
+        setInterval(getUsuarios, 3000);
     }    
 }
 
 let msg = [];
 let comparaMsg =[];
 let novasMensagens=[];
-setInterval(getMensagens, 3000);
+
 function getMensagens(){
     const resposta = axios.get("https://mock-api.driven.com.br/api/v4/uol/messages");
     resposta.then(renderizarMensagem); 
@@ -100,7 +110,7 @@ function enviarMensagem(){
 }
 
 
-setInterval(statusUsuario, 5000);
+
 function statusUsuario(){
     const promiseUser = axios.post(
         "https://mock-api.driven.com.br/api/v4/uol/status",
@@ -110,17 +120,19 @@ function statusUsuario(){
         );
    ;  
 }
-function quandoErroMensagem(){
-    console.log('Erro na mensagem');
-    window.location.reload()
-}
+
 function quandoSucessoMensagem(){
     console.log('Mensagem enviada');
     mensagem = document.querySelector(".entrada").value='';
     getMensagens();
 }
 
-setInterval(getUsuarios, 10000);
+function quandoErroMensagem(){
+    console.log('Erro na mensagem');
+    window.location.reload()
+}
+
+
 
 function getUsuarios(){        
     const resposta = axios.get("https://mock-api.driven.com.br/api/v4/uol/participants");

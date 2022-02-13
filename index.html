@@ -13,6 +13,14 @@
     </head>
     <body>
         <div class="container">
+            <div class="container-modal">
+                <main class="main">
+                    <img src="img/logo 1.png" alt="logo_uol">
+                    <input class="input-usuario" type="text" placeholder="Digite o seu nome">
+                    <div class="msg-erro"></div>
+                    <button onclick="solicitarUsuario()">Entrar</button>
+                </main>            
+            </div>       
             <div class="sombra" onclick="fecharMenu()"></div>
             <div class="menu-modal">
                 <div class="titulo">
@@ -24,20 +32,22 @@
                 <div class="titulo2">
                     <p>Escolha a visibilidade:</p>
                 </div>                   
-                <div class="tipo-msg publico ativa-msg" onclick="tipoMensagem(this, 'message')">
+                <div class="tipo-msg  ativa-msg" onclick="tipoMensagem(this, 'message')">
                     <ion-icon name="lock-open"></ion-icon>
                     <p>Público</p>
                     <ion-icon class="check" name="checkmark-outline"></ion-icon>
                 </div> 
-                <div class="tipo-msg reservado" onclick="tipoMensagem(this, 'private_message')">
+                <div class="tipo-msg " onclick="tipoMensagem(this, 'private_message')">
                     <ion-icon name="lock-closed"></ion-icon>
                     <p>Reservadamente</p>
                     <ion-icon class="check" name="checkmark-outline"></ion-icon>
                 </div>
-                <button onclick="deslogarUsuario()">
-                    <ion-icon name="exit"></ion-icon>
-                    <p>Logout</p>
-                </button>                 
+                <div class="botao">
+                    <button class="botao-sair" onclick="deslogarUsuario()">
+                        <ion-icon name="exit"></ion-icon>
+                        <p>Logout</p>
+                    </button>   
+                </div>                              
             </div>
             <header>
                 <img id="logo-uol"src="img/logo 1.png" alt="">                
@@ -48,8 +58,7 @@
             </main>
             <footer>
                 <input class="entrada" type="text" placeholder="Escreva aqui...">                
-                <ion-icon class="envia-msg" onclick="enviarMensagem()"name="paper-plane-outline"></ion-icon>
-                
+                <ion-icon class="envia-msg" onclick="enviarMensagem()"name="paper-plane-outline"></ion-icon>                
             </footer>
         </div>
         <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons/ionicons.js"></script>
