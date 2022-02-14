@@ -48,9 +48,18 @@ function getMensagens(){
 function renderizarMensagem(mensagem){  
     let conteudo = document.querySelector(".conteudo");          
     msg = mensagem.data;   
-    //limpaMensagens()
-    
-    
+    limpaMensagens()  
+
+    for(let i = 0; i < msg.length; i++){   
+
+        if (comparadorMensagem == true){
+            for (let i = msg.length-1; i>=0 ; i--) {            
+            if (ultimaMensagem === msg[i].from + msg[i].text + msg[i].time){
+                    indexInicial = i+1;               
+                } 
+            }   
+        }
+    }
 
     
     for(let i = 0; i < msg.length; i++){
