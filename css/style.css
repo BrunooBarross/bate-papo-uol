@@ -75,10 +75,11 @@ header{
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
-    line-height: 16px;   
+    line-height: 16px;    
 }
 .conteudo time{
     color: #AAAAAA;
+    
 }
 footer{
     display: flex;

@@ -29,10 +29,9 @@ function quandoSucesso(alerta){
         console.log("logado com sucesso")
         getMensagens();
         getUsuarios();
-        getUsuarios();
         setInterval(getMensagens, 30000);
         setInterval(statusUsuario, 5000);
-        setInterval(getUsuarios, 3000);
+        setInterval(getUsuarios, 10000);
     }    
 }
 
