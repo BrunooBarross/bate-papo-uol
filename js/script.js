@@ -2,7 +2,13 @@ let nomeUsuario;
 let ultimaMensagem = '';
 let comparadorMensagem = false;
 let indexInicial = 0;
-
+  
+document.addEventListener("keypress", function(e) {
+    if(e.key === 'Enter') {    
+        let btn = document.querySelector(".envia-usuario");      
+        btn.click();    
+    }
+});
 function solicitarUsuario(){
     //nomeUsuario = prompt('Qual é o seu nome de usuário');
     error.innerHTML = '';
@@ -25,10 +31,13 @@ function quandoErro(erro){
 }
 function quandoSucesso(alerta){
     document.querySelector(".container-modal").style.display = "none";
+    let btn = document.querySelector(".envia-usuario");  
+    btn.setAttribute("onClick","");
     if(alerta.status === 200){
         console.log("logado com sucesso")
         getMensagens();
         getUsuarios();
+        enviarComEnter()
         setInterval(getMensagens, 30000);
         setInterval(statusUsuario, 5000);
         setInterval(getUsuarios, 10000);
@@ -104,12 +113,14 @@ function renderizarMensagem(mensagem){
 //        divMensagens.removeChild(divMensagens.firstChild);
 //    }   
 //}
-document.addEventListener("keypress", function(e) {
-    if(e.key === 'Enter') {    
-        let btn = document.querySelector(".envia-msg");      
-        btn.click();    
-    }
-  });
+function enviarComEnter(){
+    document.addEventListener("keypress", function(e) {
+        if(e.key === 'Enter') {    
+            let btn = document.querySelector(".envia-msg");      
+            btn.click();    
+        }
+    });
+}
 let mensagem;
 function enviarMensagem(){
     mensagem = document.querySelector(".entrada").value;    
