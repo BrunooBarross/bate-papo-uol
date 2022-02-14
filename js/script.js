@@ -69,8 +69,8 @@ function renderizarMensagem(mensagem){
     for(let i = indexInicial; i < msg.length; i++){
         if(msg[i].type === "status"){            
             conteudo.innerHTML += `    
-                <div class="div-entrada-saida" id=${[i]}>
-                    <div class="texto">
+                <div class="div-entrada-saida"  id=${[i]}>
+                    <div class="texto" data-identifier="message">
                         <p><time>(${msg[i].time})</time> 
                         <strong>${msg[i].from}</strong>                                
                         ${msg[i].text}</p>  
@@ -80,7 +80,7 @@ function renderizarMensagem(mensagem){
             }else if(msg[i].type === "private_message"){
                 conteudo.innerHTML += `    
                     <div class="div-reservado" id=${[i]}>
-                        <div class="texto">
+                        <div class="texto" data-identifier="message">
                             <p><time>(${msg[i].time})</time>                        
                             <strong>${msg[i].from}</strong> 
                             <span>reservadamente para</span>  
@@ -92,7 +92,7 @@ function renderizarMensagem(mensagem){
             }else{
                 conteudo.innerHTML += `    
                     <div class="div-mensagens" id=${[i]}>
-                        <div class="texto">
+                        <div class="texto" data-identifier="message">
                             <p><time>(${msg[i].time})</time>                       
                             <strong>${msg[i].from}</strong>
                             <span>para</span>                                   
