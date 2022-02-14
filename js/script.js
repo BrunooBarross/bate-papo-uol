@@ -34,7 +34,6 @@ function quandoSucesso(alerta){
     let btn = document.querySelector(".envia-usuario");  
     btn.setAttribute("onClick","");
     if(alerta.status === 200){
-        console.log("logado com sucesso")
         getMensagens();
         getUsuarios();
         enviarComEnter()
@@ -148,7 +147,7 @@ function statusUsuario(){
 }
 
 function quandoSucessoMensagem(){
-    console.log('Mensagem enviada');
+    //console.log('Mensagem enviada');
     mensagem = document.querySelector(".entrada").value='';
     getMensagens();
 }
