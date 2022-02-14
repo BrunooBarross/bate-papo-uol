@@ -38,7 +38,7 @@ function quandoSucesso(alerta){
         getMensagens();
         getUsuarios();
         enviarComEnter()
-        setInterval(getMensagens, 30000);
+        setInterval(getMensagens, 3000);
         setInterval(statusUsuario, 5000);
         setInterval(getUsuarios, 10000);
     }    
