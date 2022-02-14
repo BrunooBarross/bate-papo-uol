@@ -48,8 +48,7 @@ function getMensagens(){
 function renderizarMensagem(mensagem){  
     let conteudo = document.querySelector(".conteudo");          
     msg = mensagem.data;   
-    limpaMensagens()  
-
+    //limpaMensagens()  
     for(let i = 0; i < msg.length; i++){   
 
         if (comparadorMensagem == true){
@@ -59,9 +58,7 @@ function renderizarMensagem(mensagem){
                 } 
             }   
         }
-    }
-
-    
+    }    
     for(let i = 0; i < msg.length; i++){
         if(msg[i].type === "status"){            
             conteudo.innerHTML += `    
@@ -102,12 +99,12 @@ function renderizarMensagem(mensagem){
     conteudo = conteudo.lastElementChild;    
     conteudo.scrollIntoView()  
 }
-function limpaMensagens(){
-    let divMensagens = document.querySelector(".conteudo");
-    while(divMensagens.firstChild){
-        divMensagens.removeChild(divMensagens.firstChild);
-    }   
-}
+//function limpaMensagens(){
+//    let divMensagens = document.querySelector(".conteudo");
+//   while(divMensagens.firstChild){
+//        divMensagens.removeChild(divMensagens.firstChild);
+//    }   
+//}
 document.addEventListener("keypress", function(e) {
     if(e.key === 'Enter') {    
         let btn = document.querySelector(".envia-msg");      
@@ -129,9 +126,6 @@ function enviarMensagem(){
         promise.then(quandoSucessoMensagem);
         promise.catch(quandoErroMensagem);        
 }
-
-
-
 function statusUsuario(){
     const promiseUser = axios.post(
         "https://mock-api.driven.com.br/api/v4/uol/status",
@@ -152,9 +146,6 @@ function quandoErroMensagem(){
     console.log('Erro na mensagem');
     window.location.reload()
 }
-
-
-
 function getUsuarios(){        
     const resposta = axios.get("https://mock-api.driven.com.br/api/v4/uol/participants");
     resposta.then(renderizarUsuarios);    

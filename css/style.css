@@ -66,20 +66,19 @@ header{
     background-color: #DCDCDC;   
 }
 .texto{
-    width: 100%;
+    width: 97%;
     align-self: center;   
-    overflow-wrap: break-word;
-    margin-left: 8px; 
+    overflow-wrap: break-word; 
+    margin-left: 8px;
     margin-right: 8px;
-
     font-family: Roboto;
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
-    line-height: 16px;    
+    line-height: 16px;   
 }
 .conteudo time{
-    color: #AAAAAA;    
+    color: #AAAAAA;
 }
 footer{
     display: flex;
@@ -151,8 +150,7 @@ footer ion-icon{
     align-items: center;
 }
 .todos p{
-    display: flex;   
-    padding-left: 8px;
+    display: flex;      
     font-family: Roboto;
     font-style: normal;
     font-weight: normal;
