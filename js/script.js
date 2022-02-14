@@ -40,7 +40,7 @@ function quandoSucesso(alerta){
         statusUsuario();
         setInterval(getMensagens, 3000);
         setInterval(statusUsuario, 5000);
-        setInterval(getUsuarios, 6000);
+        setInterval(getUsuarios, 5000);
     }    
 }
 
