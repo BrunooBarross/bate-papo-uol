@@ -30,7 +30,7 @@ function quandoSucesso(alerta){
         getMensagens();
         getUsuarios();
         getUsuarios();
-        setInterval(getMensagens, 3000);
+        setInterval(getMensagens, 30000);
         setInterval(statusUsuario, 5000);
         setInterval(getUsuarios, 3000);
     }    
@@ -66,29 +66,35 @@ function renderizarMensagem(mensagem){
         if(msg[i].type === "status"){            
             conteudo.innerHTML += `    
                 <div class="div-entrada-saida" id=${[i]}>
-                    <p><time>(${msg[i].time})</time> 
-                    <strong>${msg[i].from}</strong>                                
-                    ${msg[i].text}</p>                     
+                    <div class="texto">
+                        <p><time>(${msg[i].time})</time> 
+                        <strong>${msg[i].from}</strong>                                
+                        ${msg[i].text}</p>  
+                    <div>                    
                 </div>        
             `;                      
             }else if(msg[i].type === "private_message"){
                 conteudo.innerHTML += `    
                     <div class="div-reservado" id=${[i]}>
-                        <p><time>(${msg[i].time})</time>                        
-                        <strong>${msg[i].from}</strong> 
-                        <span>reservadamente para</span>  
-                        <strong>${msg[i].to}</strong>                               
-                        ${msg[i].text}</p>                     
+                        <div class="texto">
+                            <p><time>(${msg[i].time})</time>                        
+                            <strong>${msg[i].from}</strong> 
+                            <span>reservadamente para</span>  
+                            <strong>${msg[i].to}</strong>                               
+                            ${msg[i].text}</p>            
+                        <div>                                 
                     </div>        
                 `;    
             }else{
                 conteudo.innerHTML += `    
                     <div class="div-mensagens" id=${[i]}>
-                        <p><time>(${msg[i].time})</time>                       
-                        <strong>${msg[i].from}</strong>
-                        <span>para</span>                                   
-                        <strong>${msg[i].to}</strong>
-                        ${msg[i].text}</p> 
+                        <div class="texto">
+                            <p><time>(${msg[i].time})</time>                       
+                            <strong>${msg[i].from}</strong>
+                            <span>para</span>                                   
+                            <strong>${msg[i].to}</strong>
+                            ${msg[i].text}</p> 
+                        <div>    
                     </div>        
                 `;
         }              

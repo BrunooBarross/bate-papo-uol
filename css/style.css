@@ -36,62 +36,45 @@ header{
     font-size: 42.19px;
     margin-right: 22.41px;
 }
-main{    
-    height: 100%;    
-}
-.div-mensagens{
-    display: flex;
-    flex-direction: collum;
-    align-items: center;
-    margin-top: 4px;
 
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 14px;
-    line-height: 16px;
+.div-mensagens{ 
+    display: flex;   
+    margin-top: 4px;    
 
     width: 100%;
     min-height: 40px;
     border-radius: 2px;
     background-color: #FFFFFF;   
-    overflow-wrap: break-word;  
 }
-.div-reservado{
-    display: flex;
-    flex-direction: collum;
-    align-items: center;
+.div-reservado{  
+    display: flex; 
     margin-top: 4px;
+
+   
+    width: 100%;
+    min-height: 40px;
+    border-radius: 2px;
+    background-color: #FFDEDE;      
+}
+.div-entrada-saida{ 
+    display: flex;    
+    margin-top: 4px;
+
+    width: 100%;
+    min-height: 40px;
+    border-radius: 2px;
+    background-color: #DCDCDC;   
+}
+.texto{
+    width: 100%;
+    align-self: center;   
+    overflow-wrap: break-word; 
 
     font-family: Roboto;
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
-    line-height: 16px;
-
-    width: 100%;
-    min-height: 40px;
-    border-radius: 2px;
-    background-color: #FFDEDE;    
-    overflow-wrap: break-word;  
-}
-.div-entrada-saida{  
-    display: flex;
-    flex-direction: collum; 
-    align-items: center;
-    margin-top: 4px;
-        
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 14px;
-    line-height: 16px;
-
-    width: 100%;
-    min-height: 40px;
-    border-radius: 2px;
-    background-color: #DCDCDC;
-    overflow-wrap: break-word;  
+    line-height: 16px;    
 }
 .conteudo time{
     color: #AAAAAA;
