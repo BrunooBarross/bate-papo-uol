@@ -36,10 +36,11 @@ function quandoSucesso(alerta){
     if(alerta.status === 200){
         getMensagens();
         getUsuarios();
-        enviarComEnter()
+        enviarComEnter();
+        statusUsuario();
         setInterval(getMensagens, 3000);
         setInterval(statusUsuario, 5000);
-        setInterval(getUsuarios, 10000);
+        setInterval(getUsuarios, 6000);
     }    
 }
 
@@ -191,8 +192,11 @@ function fecharMenu(){
     document.querySelector(".sombra").style.display="none"
 }
 let usuarioEscolhido = "todos";
-function selecionarUsuario(div, usuario){
-    usuarioEscolhido = usuario;
+let paraQuem = document.querySelector(".paraQuem");
+paraQuem.innerHTML = "Enviar para todos (publicamente)";
+function selecionarUsuario(div, usuario){    
+    usuarioEscolhido = usuario;   
+    paraQuem.innerHTML = "Enviar para " + usuarioEscolhido+" "+converteTipoMensagem;
     let usuarioSelecionado = document.querySelector(".ativa-check");
     if(usuarioSelecionado !== null){
         usuarioSelecionado.classList.remove("ativa-check")
@@ -201,8 +205,15 @@ function selecionarUsuario(div, usuario){
 }
 
 let tipoDeMensagem = 'message';
+let converteTipoMensagem = '(publicamente)'
 function tipoMensagem(div, tipoMensagem){
     tipoDeMensagem = tipoMensagem;
+    if(tipoDeMensagem == 'message'){
+        converteTipoMensagem = '(publicamente)'        
+    }else{
+        converteTipoMensagem = '(reservadamente)'
+    }
+    paraQuem.innerHTML = "Enviar para " + usuarioEscolhido+" "+converteTipoMensagem;
     let tipoSelecionado = document.querySelector(".ativa-msg"); 
     if(tipoSelecionado !== null){
         tipoSelecionado.classList.remove("ativa-msg")
