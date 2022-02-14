@@ -2,7 +2,7 @@ let nomeUsuario;
 let ultimaMensagem = '';
 let comparadorMensagem = false;
 let indexInicial = 0;
-  
+
 document.addEventListener("keypress", function(e) {
     if(e.key === 'Enter') {    
         let btn = document.querySelector(".envia-usuario");      
@@ -57,17 +57,16 @@ function renderizarMensagem(mensagem){
     let conteudo = document.querySelector(".conteudo");          
     msg = mensagem.data;   
     //limpaMensagens()  
-    for(let i = 0; i < msg.length; i++){   
-
+    for(let i = 0; i < msg.length; i++){  
         if (comparadorMensagem == true){
             for (let i = msg.length-1; i>=0 ; i--) {            
-            if (ultimaMensagem === msg[i].from + msg[i].text + msg[i].time){
+               if (ultimaMensagem === msg[i].from + msg[i].text + msg[i].time){
                     indexInicial = i+1;               
                 } 
             }   
         }
     }    
-    for(let i = 0; i < msg.length; i++){
+    for(let i = indexInicial; i < msg.length; i++){
         if(msg[i].type === "status"){            
             conteudo.innerHTML += `    
                 <div class="div-entrada-saida" id=${[i]}>
@@ -104,6 +103,8 @@ function renderizarMensagem(mensagem){
                 `;
         }              
     }
+    ultimaMensagem = msg[99].from + msg[99].text + msg[99].time;
+    comparadorMensagem = true;
     conteudo = conteudo.lastElementChild;    
     conteudo.scrollIntoView()  
 }
