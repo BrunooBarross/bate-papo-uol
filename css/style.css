@@ -41,25 +41,26 @@ main{
 }
 .div-mensagens{
     display: flex;
-    flex-direction: column;
-    margin-top: 4px; 
+    flex-direction: collum;
+    align-items: center;
+    margin-top: 4px;
 
     font-family: Roboto;
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
     line-height: 16px;
-    overflow-wrap: break-word;  
-        
-    
+
     width: 100%;
     min-height: 40px;
-    border-radius: 2px;    
-    background-color: #FFFFFF;
+    border-radius: 2px;
+    background-color: #FFFFFF;   
+    overflow-wrap: break-word;  
 }
 .div-reservado{
     display: flex;
     flex-direction: collum;
+    align-items: center;
     margin-top: 4px;
 
     font-family: Roboto;
@@ -77,6 +78,7 @@ main{
 .div-entrada-saida{  
     display: flex;
     flex-direction: collum; 
+    align-items: center;
     margin-top: 4px;
         
     font-family: Roboto;
